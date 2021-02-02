@@ -22,17 +22,6 @@ router.put('/addImage', async (req,res) => {
         }
     );
 })
-//read images from album
-router.get('/', async (req,res) => {
-    User.find( {email: process.env.email}, { images: 1 },
-        function(err, result) {
-            if (err) {
-              res.send(err);
-            } else {
-              res.send(result);
-            }
-          })
-})
 //Delete image
 router.put('/deleteImage', async (req,res) => {
     User.updateOne(

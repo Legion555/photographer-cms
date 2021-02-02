@@ -21,6 +21,17 @@ router.put('/createAlbum', async (req,res) => {
         }
     );
 })
+//read albums (for visitor)
+router.get('/', async (req,res) => {
+    User.find( {email: process.env.email}, { albums: 1 },
+        function(err, result) {
+            if (err) {
+              res.send(err);
+            } else {
+              res.send(result);
+            }
+          })
+})
 //Delete album
 router.put('/deleteAlbum', async (req,res) => {
     User.updateOne(
