@@ -1,0 +1,20 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  box-sizing: border-box;
+}
+
+.progbar {
+  animation: mymove 2s infinite;
+}
+@keyframes mymove {
+  0% {left: 0px}
+  50% {left: 13rem}
+  100% {left: 0px}
+}
+
+.nav-dropdown:hover .nav-dropdown-list  {
+  display: block;
+}
