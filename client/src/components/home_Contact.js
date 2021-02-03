@@ -18,7 +18,7 @@ export default function Contact() {
             email: email,
             message: message
         }
-        axios.post('/api/email/contact', JSON.stringify(payload), {
+        axios.post('/api/email/contact', payload, {
             headers: {
                 'Content-Type': 'application/json;charset=utf-8'
             }
