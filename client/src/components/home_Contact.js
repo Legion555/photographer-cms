@@ -25,20 +25,11 @@ export default function Contact() {
         })
         .then(res => {
             setStatus('Success');
+            console.log(res);
         })
         .catch(err => {
-            console.log(err)
+            console.log(err);
         })
-        // let response = await fetch('http://localhost:3000/api/email/contact', {
-        //     method: "POST",
-        //     headers: {
-        //         "Content-Type": "application/json;charset=utf-8",
-        //     },
-        //     body: JSON.stringify(payload),
-        // });
-        // setStatus('Submit');
-        // let result = await response.json;
-        // alert(result.status);
     }
 
     return (
