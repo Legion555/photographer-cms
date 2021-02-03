@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import axios from 'axios';
 import { storage } from '../firebase/firebase';
+//components
 import AddAlbum from '../components/admin_AddAlbum';
 import AlbumView from '../components/admin_AlbumView';
 //redux
@@ -10,13 +11,12 @@ import { updateAlbumData, updateUserData } from '../actions';
 import { AiOutlineArrowLeft } from 'react-icons/ai';
 import { BsTrash } from 'react-icons/bs';
 import { ImEye } from 'react-icons/im';
-//react-router
-import { useHistory } from "react-router-dom";
+//routing
+import {A} from 'hookrouter';
 
 
 
 export default function Dashboard() {
-    const history = useHistory();
     const dispatch = useDispatch();
     const userData = useSelector(state => state.userData);
     
@@ -67,8 +67,9 @@ export default function Dashboard() {
 
     return (
         <div>
-            <p className="w-max flex items-center text-xl mt-5 ml-10 p-2 rounded-2xl cursor-pointer hover:bg-gray-100"
-                onClick={() => history.push('/')} ><AiOutlineArrowLeft /> Back to site</p>
+            <A href="/">
+                <p className="w-max flex items-center text-xl mt-5 ml-10 p-2 rounded-2xl cursor-pointer hover:bg-gray-100"><AiOutlineArrowLeft /> Back to site</p>
+            </A>
             <div className="text-center">
                 <h1 className="text-6xl mb-5">Albums</h1>
                 <p className="w-max mx-auto p-2 rounded-xl text-xl bg-green-200 cursor-pointer hover:bg-green-400"

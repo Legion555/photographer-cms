@@ -1,7 +1,7 @@
 //view
-export const updateView = data => {
+export const updateIsLoggedIn = data => {
     return {
-        type: 'UPDATE_VIEW',
+        type: 'UPDATE_ISLOGGEDIN',
         payload: data
     }
 }

@@ -1,12 +1,12 @@
 import { combineReducers } from 'redux';
-import viewReducer from './view';
+import isLoggedInReducer from './isLoggedIn';
 import userDataReducer from './userData';
 import albumDataReducer from './albumData';
 import albumListReducer from './albumList';
 import imageListReducer from './imageList';
 
 const rootReducer = combineReducers({
-    view: viewReducer,
+    isLoggedIn: isLoggedInReducer,
     userData: userDataReducer,
     albumData: albumDataReducer,
     albumList: albumListReducer,

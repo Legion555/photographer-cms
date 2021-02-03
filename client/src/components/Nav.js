@@ -2,18 +2,26 @@
 import { FaFacebook, FaTwitter } from 'react-icons/fa';
 //redux
 import { useSelector, useDispatch } from "react-redux"
-import { updateView, updateImageList } from "../actions"
-//react-router
-import { useHistory } from "react-router-dom";
+import { updateImageList } from "../actions"
+//routing
+import {A} from 'hookrouter';
 
 
 
 export default function Nav(props) {
-    const history = useHistory();
     const dispatch = useDispatch();
     const albumList = useSelector(state => state.albumList);
 
-    const view = useSelector(state => state.view);
+    const isLoggedIn = useSelector(state => state.isLoggedIn);
+
+    const viewAlbum = (albumImages) => {
+        props.setHomeView('gallery');
+        dispatch(updateImageList(albumImages));
+    }
+    const viewAllAlbums = () => {
+        props.setHomeView('gallery');
+        dispatch(updateImageList(albumList.map(album => album.images.map(image => image)).flat()))
+    }
 
     return (
         <div className="flex justify-evenly items-center w-full h-12 pt-5">
@@ -24,20 +32,24 @@ export default function Nav(props) {
                 <div className="nav-dropdown py-2 hover:bg-gray-200 cursor-pointer">
                     <div>
                         <p className="px-4"
-                            onClick={() => history.push('/')}>Gallery</p>
+                            onClick={viewAllAlbums}>Gallery</p>
                     </div>
                     <div className="nav-dropdown-list hidden mt-2 absolute bg-gray-200">
                         {albumList.map(album => 
                             <p className="px-4 py-2 hover:bg-gray-400" key={album.name}
-                                onClick={() => dispatch(updateImageList(album.images))}>{album.name}</p>
+                                onClick={() => viewAlbum(album.images)}>{album.name}</p>
                         )}
                         <p className="px-4 py-2 hover:bg-gray-400"
-                                onClick={() => dispatch(updateImageList(albumList.map(album => album.images.map(image => image)).flat()))}>All</p>
+                                onClick={viewAllAlbums}>All</p>
                     </div>
                 </div>
-                {view === 'dashboard' &&
-                    <p className="px-4 py-2 hover:bg-gray-200 cursor-pointer"
-                        onClick={() => history.push('/dashboard')}>Dashboard</p>
+                <p className="px-4 py-2 hover:bg-gray-200 cursor-pointer"
+                    onClick={() => props.setHomeView('contact')}>Contact</p>
+                {isLoggedIn &&
+                    <A href="/admin">
+                        <p className="px-4 py-2 hover:bg-gray-200 cursor-pointer">Dashboard</p>
+                    </A>
+                    
                 }
             </div>
             <div className="flex">
